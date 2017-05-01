@@ -24,13 +24,13 @@ int myRight = this.getMyRight();
 int oppLeft = this.getOppLeft();
 int oppRight = this.getMyRight();
 ```
-the variables are assigned the current number of fingers at each hand, so that you can decided what move to take based on that data. 
+the variables represent the current number of fingers at each hand, so that you can decided what move to take based on that data. 
 Once you have decided, rewrite lines 
 ```java
 Hand chooseMyHand = Hand.RIGHT;
 Hand chooseOppHand = Hand.LEFT;
 ```
-in each case either using Hand.RIGHT or Hand.LEFT, which are constants used to standardize the notion of hands. `chooseMyHand` designates the hand with which you want to hit opponent's hand, i.e. `chooseOppHand`.
+in each case either using `Hand.RIGHT` or `Hand.LEFT`, which are constants used to standardize the notion of hands. `chooseMyHand` designates the hand with which you want to hit opponent's hand, i.e. `chooseOppHand`.
 That is all you need to know and implement. You can write any other class as you
 wish.
 
