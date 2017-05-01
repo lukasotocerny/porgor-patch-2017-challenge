@@ -8,7 +8,7 @@ public abstract class Client {
     private int oppLeft;
     private int oppRight;
     
-    private String name;
+    private final String name;
     
     // constructor with initial game data
     public Client(String name) {
