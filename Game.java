@@ -38,13 +38,13 @@ public class Game {
     private void updateWithAsTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.playerBRight>this.playerARight) {
+                if (5>this.playerARight+this.playerBRight) {
                     this.playerBRight += this.playerARight;
                 } else {
                     this.playerBRight = 0;
                 }
             } else {
-                if (5-this.playerBLeft>this.playerARight) {
+                if (5>this.playerARight+this.playerBLeft) {
                     this.playerBLeft += this.playerARight;
                 } else {
                     this.playerBLeft = 0;
@@ -52,13 +52,13 @@ public class Game {
             }
         } else {
             if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.playerBRight>this.playerALeft) {
+                if (5>this.playerALeft+this.playerBRight) {
                     this.playerBRight += this.playerALeft;
                 } else {
                     this.playerBRight = 0;
                 }
             } else {
-                if (5-this.playerBLeft>this.playerALeft) {
+                if (5>this.playerALeft+this.playerBLeft) {
                     this.playerBLeft += this.playerALeft;
                 } else {
                     this.playerBLeft = 0;
@@ -71,13 +71,13 @@ public class Game {
     private void updateWithBsTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.playerARight>this.playerBRight) {
+                if (5>this.playerBRight+this.playerARight) {
                     this.playerARight += this.playerBRight;
                 } else {
                     this.playerARight = 0;
                 }
             } else {
-                if (5-this.playerALeft>this.playerBRight) {
+                if (5>this.playerBRight+this.playerALeft) {
                     this.playerALeft += this.playerBRight;
                 } else {
                     this.playerALeft = 0;
@@ -85,13 +85,13 @@ public class Game {
             }
         } else {
             if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.playerARight>this.playerBLeft) {
+                if (5>this.playerBLeft+this.playerARight) {
                     this.playerARight += this.playerBLeft;
                 } else {
                     this.playerARight = 0;
                 }
             } else {
-                if (5-this.playerALeft>this.playerBLeft) {
+                if (5>this.playerBLeft+this.playerALeft) {
                     this.playerALeft += this.playerBLeft;
                 } else {
                     this.playerALeft = 0;

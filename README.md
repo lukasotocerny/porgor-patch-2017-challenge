@@ -24,7 +24,7 @@ int myRight = this.getMyRight();
 int oppLeft = this.getOppLeft();
 int oppRight = this.getMyRight();
 ```
-the variables represent the current number of fingers at each hand, so that you can decided what move to take based on that data. 
+the variables represent the current number of fingers at each hand, so that you can decide what move to take based on that data. 
 Once you have decided, rewrite lines 
 ```java
 Hand chooseMyHand = Hand.RIGHT;
