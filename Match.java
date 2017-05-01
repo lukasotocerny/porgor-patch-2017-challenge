@@ -1,0 +1,14 @@
+
+package porgorpatch2017;
+
+public class Match {
+    
+    public static void main(String[] args) {
+        Bot red = new Bot("red");
+        Bot black = new Bot("black");
+        Game game = new Game(red, black);
+
+        Client winner = game.play();
+        System.out.println(winner.getName());
+    }
+}
