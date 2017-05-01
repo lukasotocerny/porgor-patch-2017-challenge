@@ -1,7 +1,7 @@
 
 package porgorpatch2017;
 
-public class Client {
+public abstract class Client {
     
     private int myLeft;
     private int myRight;
@@ -10,14 +10,16 @@ public class Client {
     
     private String name;
     
+    // constructor with initial game data
     public Client(String name) {
-        this.myLeft = 0;
-        this.myRight = 0;
-        this.oppLeft = 0;
-        this.oppRight = 0;
+        this.myLeft = 1;
+        this.myRight = 1;
+        this.oppLeft = 1;
+        this.oppRight = 1;
         this.name = name;
     }
     
+    // public method for updating attributes after my turn
     public void updateWithMyTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
@@ -50,6 +52,7 @@ public class Client {
         }
     }
     
+    // public method for updating attributes after opponents turn    
     public void updateWithOpponentTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
@@ -82,18 +85,31 @@ public class Client {
         }
     }
     
+    // public method for getting client's turn, implemented by sendTurn() in subclass
     public Turn getTurn() {
         return sendTurn();
     }
     
+    // public method for getting name in String
     public String getName() {
         return this.name;
     }
     
-    private Turn sendTurn() {
-        Hand myHand = Hand.RIGHT;
-        Hand oppHand = Hand.LEFT;
-        return new Turn(myHand, oppHand);
+    // implemented by subclass Bot
+    public abstract Turn sendTurn();
+    
+    // getters for number of fingers
+    public int getMyLeft() {
+        return this.myLeft;
+    }
+    public int getMyRight() {
+        return this.myRight;
+    }
+    public int getOppLeft() {
+        return this.oppLeft;
+    }
+    public int getOppRight() {
+        return this.oppRight;
     }
     
 }

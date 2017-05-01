@@ -7,19 +7,23 @@ public class Game {
     private int playerARight;
     private int playerBLeft;
     private int playerBRight;
+    private int round;
     
     private final Client playerA;
     private final Client playerB;
     
+    // instantiate a new game with initial game data
     public Game(Client A, Client B) {
         this.playerA = A;
         this.playerB = B;
-        this.playerARight = 0;
-        this.playerALeft = 0;
-        this.playerBRight = 0;
-        this.playerBLeft = 0;
+        this.round = 0;
+        this.playerARight = 1;
+        this.playerALeft = 1;
+        this.playerBRight = 1;
+        this.playerBLeft = 1;
     }
     
+    // check if game is finished
     private boolean isFinished() {
         if (this.playerALeft==0 && this.playerARight==0) {
             return true;
@@ -30,6 +34,7 @@ public class Game {
         }
     }
     
+    // update this instance's attributes after A's turn
     private void updateWithAsTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
@@ -62,6 +67,7 @@ public class Game {
         }
     }
     
+    // update this instance's attributes after B's turn
     private void updateWithBsTurn(Turn turn) {
         if (turn.getMyHand() == Hand.RIGHT) {
             if (turn.getOppHand() == Hand.RIGHT) {
@@ -94,20 +100,37 @@ public class Game {
         }
     }
 
+    // API method for playing the game instance, returns winner
     public Client play() {
-        boolean AsTurn = 0.6<0.5;
+        boolean AsTurn = Math.random()<0.5;
         while (!isFinished()) {
+            if (this.round > 1000) {
+                return new Bot("tie");
+            }
             if (AsTurn) {
                 Turn turn = this.playerA.getTurn();
                 this.playerA.updateWithMyTurn(turn);
                 this.playerB.updateWithOpponentTurn(turn);
                 this.updateWithAsTurn(turn);
+                System.out.println("-----------");
+                System.out.println("Round " + this.round);
+                System.out.println("Player A uses " + turn.getMyHand().toString()
+                        + " to hit player B's " + turn.getOppHand());
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
             } else {
                 Turn turn = this.playerB.getTurn();
                 this.playerA.updateWithOpponentTurn(turn);
                 this.playerB.updateWithMyTurn(turn);
                 this.updateWithBsTurn(turn);
+                System.out.println("-----------");
+                System.out.println("Round " + this.round);
+                System.out.println("Player B uses " + turn.getMyHand().toString()
+                        + " to hit player A's " + turn.getOppHand());
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
             }
+            this.round++;
             AsTurn = !AsTurn;
         }
         if (this.playerALeft==0 && this.playerARight==0) {
