@@ -33,10 +33,7 @@ public class Game {
             return false;
         }
     }
-    
-    private boolean isLegalMove(Turn turn) {
-        return true;
-    }
+
     
     // update this instance's attributes after A's turn
     private void updateWithAsTurn(Turn turn) {
@@ -123,38 +120,18 @@ public class Game {
             }
             if (AsTurn) {
                 Turn turn = this.playerA.getTurn();
+                if (!this.playerA.isLegalMove(turn)) return this.playerB;
                 this.playerA.updateWithMyTurn(turn);
                 this.playerB.updateWithOpponentTurn(turn);
                 this.updateWithAsTurn(turn);
-                System.out.println("-----------");
-                System.out.println("Round " + this.round);
-                if (turn.getSwitchHands()) {
-                    System.out.println("Player A switches hands");
-                    System.out.println("A: " + this.playerALeft + " " + this.playerARight);
-                    System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
-                } else {
-                    System.out.println("Player A uses " + turn.getMyHand().toString()
-                            + " to hit player B's " + turn.getOppHand());
-                    System.out.println("A: " + this.playerALeft + " " + this.playerARight);
-                    System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
-                }
+                printRound(AsTurn, turn);
             } else {
                 Turn turn = this.playerB.getTurn();
+                if (!this.playerB.isLegalMove(turn)) return this.playerA;
                 this.playerA.updateWithOpponentTurn(turn);
                 this.playerB.updateWithMyTurn(turn);
                 this.updateWithBsTurn(turn);
-                System.out.println("-----------");
-                System.out.println("Round " + this.round);
-                if (turn.getSwitchHands()) {
-                    System.out.println("Player B switches hands");
-                    System.out.println("A: " + this.playerALeft + " " + this.playerARight);
-                    System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);    
-                } else {
-                    System.out.println("Player B uses " + turn.getMyHand().toString()
-                            + " to hit player A's " + turn.getOppHand());
-                    System.out.println("A: " + this.playerALeft + " " + this.playerARight);
-                    System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
-                }
+                printRound(AsTurn, turn);
             }
             this.round++;
             AsTurn = !AsTurn;
@@ -163,6 +140,38 @@ public class Game {
             return this.playerB;
         } else {
             return this.playerA;
+        }
+    }
+    
+    
+    // printing out the results after each round
+    private void printRound(boolean AsTurn, Turn turn) {
+        if (AsTurn) {
+            System.out.println("-----------");
+            System.out.println("Round " + this.round);
+            if (turn.getSwitchHands()) {
+                System.out.println("Player A switches hands");
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
+            } else {
+                System.out.println("Player A uses " + turn.getMyHand().toString()
+                        + " to hit player B's " + turn.getOppHand());
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
+            }
+        } else {
+            System.out.println("-----------");
+            System.out.println("Round " + this.round);
+            if (turn.getSwitchHands()) {
+                System.out.println("Player B switches hands");
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);    
+            } else {
+                System.out.println("Player B uses " + turn.getMyHand().toString()
+                        + " to hit player A's " + turn.getOppHand());
+                System.out.println("A: " + this.playerALeft + " " + this.playerARight);
+                System.out.println("B: " + this.playerBLeft + " " + this.playerBRight);
+            }
         }
     }
     

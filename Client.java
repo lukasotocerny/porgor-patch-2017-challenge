@@ -95,6 +95,48 @@ public abstract class Client {
         }
     }
     
+    private boolean isLegalHit(int myHand, int oppHand) {
+        if (myHand==0) {
+            System.out.println("Invalid move from " + this.name + ". Cannot "
+                + "HIT with hand that has 0 fingers.");
+            return false;
+        } else if (oppHand==0) {
+            System.out.println("Invalid move from " + this.name + ". Cannot "
+                + "HIT hand that has 0 fingers.");
+            return false;
+        } else {
+            return true;
+        } 
+    }
+    
+    // return whether a turn in a specific moment is legal
+    public boolean isLegalMove(Turn turn) {
+        if (turn.getSwitchHands()) {
+            if (turn.getMyLeft()+turn.getMyRight()!=this.myLeft+this.myRight) {
+                System.out.println("Invalid move from " + this.name + ". Cannot "
+                        + "SWITCH from " + this.myLeft + " " + this.myRight + " -> " + 
+                        turn.getMyLeft() + " " + turn.getMyRight());
+                return false;
+            } else if (turn.getMyLeft()==this.myRight && turn.getMyRight()==this.myLeft) {
+                System.out.println("Invalid move from " + this.name + ". Cannot "
+                        + "SWITCH from " + this.myLeft + " " + this.myRight + " -> " + 
+                        turn.getMyLeft() + " " + turn.getMyRight());
+                return false;
+            }
+        } else {
+            if (turn.getMyHand()==Hand.RIGHT && turn.getOppHand()==Hand.RIGHT) {
+                if (!isLegalHit(this.myRight, this.oppRight)) return false;
+            } else if (turn.getMyHand()==Hand.RIGHT && turn.getOppHand()==Hand.LEFT) {
+                if (!isLegalHit(this.myRight, this.oppLeft)) return false;
+            } else if (turn.getMyHand()==Hand.LEFT && turn.getOppHand()==Hand.RIGHT) {
+                if (!isLegalHit(this.myLeft, this.oppRight)) return false;
+            } else {
+                if (!isLegalHit(this.myLeft, this.oppLeft)) return false;
+            }
+        }
+        return true;
+    }
+    
     // public method for getting client's turn, implemented by sendTurn() in subclass
     public Turn getTurn() {
         return sendTurn();

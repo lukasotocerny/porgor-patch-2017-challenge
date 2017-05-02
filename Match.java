@@ -10,6 +10,6 @@ public class Match {
         Game game = new Game(johnny, black);
 
         Client winner = game.play();
-        System.out.println(winner.getName());
+        System.out.println(winner.getName() + " wins.");
     }
 }
