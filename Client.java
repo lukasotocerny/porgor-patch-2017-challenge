@@ -21,66 +21,76 @@ public abstract class Client {
     
     // public method for updating attributes after my turn
     public void updateWithMyTurn(Turn turn) {
-        if (turn.getMyHand() == Hand.RIGHT) {
-            if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.oppRight>this.myRight) {
-                    this.oppRight += this.myRight;
-                } else {
-                    this.oppRight = 0;
-                }
-            } else {
-                if (5-this.oppLeft>this.myRight) {
-                    this.oppLeft += this.myRight;
-                } else {
-                    this.oppLeft = 0;
-                } 
-            }
+        if (turn.getSwitchHands()) {
+            this.myLeft = turn.getMyLeft();
+            this.myRight = turn.getMyRight();
         } else {
-            if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.oppRight>this.myLeft) {
-                    this.oppRight += this.myLeft;
+            if (turn.getMyHand() == Hand.RIGHT) {
+                if (turn.getOppHand() == Hand.RIGHT) {
+                    if (5-this.oppRight>this.myRight) {
+                        this.oppRight += this.myRight;
+                    } else {
+                        this.oppRight = 0;
+                    }
                 } else {
-                    this.oppRight = 0;
+                    if (5-this.oppLeft>this.myRight) {
+                        this.oppLeft += this.myRight;
+                    } else {
+                        this.oppLeft = 0;
+                    } 
                 }
             } else {
-                if (5-this.oppLeft>this.myLeft) {
-                    this.oppLeft += this.myLeft;
+                if (turn.getOppHand() == Hand.RIGHT) {
+                    if (5-this.oppRight>this.myLeft) {
+                        this.oppRight += this.myLeft;
+                    } else {
+                        this.oppRight = 0;
+                    }
                 } else {
-                    this.oppLeft = 0;
-                } 
+                    if (5-this.oppLeft>this.myLeft) {
+                        this.oppLeft += this.myLeft;
+                    } else {
+                        this.oppLeft = 0;
+                    } 
+                }
             }
         }
     }
     
     // public method for updating attributes after opponents turn    
     public void updateWithOpponentTurn(Turn turn) {
-        if (turn.getMyHand() == Hand.RIGHT) {
-            if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.myRight>this.oppRight) {
-                    this.myRight += this.oppRight;
-                } else {
-                    this.myRight = 0;
-                }
-            } else {
-                if (5-this.myLeft>this.oppRight) {
-                    this.myLeft += this.oppRight;
-                } else {
-                    this.myLeft = 0;
-                } 
-            }
+        if (turn.getSwitchHands()) {
+            this.oppLeft = turn.getMyLeft();
+            this.oppRight = turn.getMyRight();
         } else {
-            if (turn.getOppHand() == Hand.RIGHT) {
-                if (5-this.myRight>this.oppLeft) {
-                    this.myRight += this.oppLeft;
+            if (turn.getMyHand() == Hand.RIGHT) {
+                if (turn.getOppHand() == Hand.RIGHT) {
+                    if (5-this.myRight>this.oppRight) {
+                        this.myRight += this.oppRight;
+                    } else {
+                        this.myRight = 0;
+                    }
                 } else {
-                    this.myRight = 0;
+                    if (5-this.myLeft>this.oppRight) {
+                        this.myLeft += this.oppRight;
+                    } else {
+                        this.myLeft = 0;
+                    } 
                 }
             } else {
-                if (5-this.myLeft>this.oppLeft) {
-                    this.myLeft += this.oppLeft;
+                if (turn.getOppHand() == Hand.RIGHT) {
+                    if (5-this.myRight>this.oppLeft) {
+                        this.myRight += this.oppLeft;
+                    } else {
+                        this.myRight = 0;
+                    }
                 } else {
-                    this.myLeft = 0;
-                } 
+                    if (5-this.myLeft>this.oppLeft) {
+                        this.myLeft += this.oppLeft;
+                    } else {
+                        this.myLeft = 0;
+                    } 
+                }
             }
         }
     }

@@ -22,7 +22,9 @@ public class Bot extends Client {
         // choose my hand that will hit opponent's hand
         Hand chooseMyHand = Hand.RIGHT;
         Hand chooseOppHand = Hand.LEFT;
-        return new Turn(chooseMyHand, chooseOppHand);
+        Hand switchHands = Hand.SWITCH;
+        return new Turn(switchHands, 3, 2);
+        // return new Turn(chooseMyHand, chooseOppHand);
     }
     
 }

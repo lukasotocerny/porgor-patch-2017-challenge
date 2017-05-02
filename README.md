@@ -5,6 +5,11 @@ Document bellow provides the basic structure of the methods that you can use for
 ### RULES ###
 #### Game ####
 
+##### Illegal moves, beware! #####
+* Switching symmetrically, e.g. 1 1 -> 1 1, or 2 3 -> 3 2 is not allowed.
+* Hitting opponent with a hand with 0 fingers, e.g. 0 3 -> you cannot hit with LEFT hand
+* Hitting opponent's hand that has 0 fingers, e.g. ME: 2 3 OPP: 0 2, I cannot hit OPP's LEFT hand
+
 
 #### Penalties, rewards ####
 * Illegal turn results immediate loss of the game.
