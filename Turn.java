@@ -9,12 +9,12 @@ public class Turn {
     private final int myRight;
     private final boolean switchHands;
     
-    public Turn(Hand switchHands, int left, int right) {
+    public Turn(Hand switchHands, int newLeft, int newRight) {
         this.myHand = null;
         this.oppHand = null;
         this.switchHands = true;
-        this.myLeft = left;
-        this.myRight = right;
+        this.myLeft = newLeft;
+        this.myRight = newRight;
     }
     
     public Turn(Hand myHand, Hand oppHand) {

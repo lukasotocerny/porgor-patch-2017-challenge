@@ -5,7 +5,7 @@ public class Match {
     
     // main interface for matches
     public static void main(String[] args) {
-        Bot johnny = new Bot("johnny");
+        Bot johnny = new Bot("lukas");
         Bot black = new Bot("black");
         Game game = new Game(johnny, black);
 

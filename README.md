@@ -21,8 +21,14 @@ Document bellow provides the basic structure of the methods that you can use for
 * After all the matches the team with the most points wins the challenge.
 
 ### IMPLEMENTATION ###
-#### Bot class ####
-Your job is to implement the `sendTurn()` function. This function is called by `match` class, when it is waiting for you take make your turn. In the initial lines
+#### `Bot` class ####
+Your job is to implement the `sendTurn()` function in the area:
+```java
+// *******
+// INSERT CODE HERE
+// *******
+```
+The `sendTurn()` function is called by `Match` class, when it is waiting for you take make your turn. In the initial lines
 ```java
 int myLeft = this.getMyLeft();
 int myRight = this.getMyRight();
@@ -36,9 +42,9 @@ Hand chooseMyHand = Hand.RIGHT;
 Hand chooseOppHand = Hand.LEFT;
 ```
 in each case either using `Hand.RIGHT` or `Hand.LEFT`, which are constants used to standardize the notion of hands. `chooseMyHand` designates the hand with which you want to hit opponent's hand, i.e. `chooseOppHand`.
-That is all you need to know and implement. You can write any other class as you
-wish.
+If you wish to hit opponent's hand, use `return new Turn(chooseMyHand, chooseOppHand)`, but if you wish to switch your hands use `return new Turn(Hand.SWITCH, 1, 1)` which represents `Turn(Hand switchHands, int newLeft, int newRight)`
+That is all you need to know and implement. You can use any tools and additional code as you like.
 
-#### Match class ####
-Once you have implemented your `Bot` class, you can test it against our Porgor AI, which we happened to name Johnny. 
-`Game game = new Game(johnny, black);` instantiates a new game and `game.play()` calls the game to start and eventually finish. You can view the progress of the game in the console log.
+#### `Match` class ####
+Once you have implemented your `Bot` class, you can test it against our Porgor AI, bot Lukas, named after its father. 
+`Game game = new Game(lukas, black);` instantiates a new game and `game.play()` calls the game to start and eventually finish. You can view the progress of the game in the console log.
